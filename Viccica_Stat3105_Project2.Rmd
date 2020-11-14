@@ -1,0 +1,785 @@
+---
+title: "Project_2"
+author: "Mae"
+date: "10/29/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+setwd("/Users/maeviccica/Desktop")
+
+setwd("/Users/maeviccica/Desktop/Barnard Files/Senior Year/Senior Fall 2020/Applied Statiscal Methods")
+
+```{r}
+
+
+# setwd("/Users/maeviccica/Desktop/Barnard Files/Senior Year/Senior Fall 2020/Applied Statistical Methods/Projects/Project2GPS")
+
+require("knitr")
+opts_knit$set(root.dir = "/Users/maeviccica/Desktop/Barnard Files/Senior Year/Senior Fall 2020/Applied Statistical Methods/Projects/Project2GPS")
+
+# Data
+library(jsonlite)
+setwd("/Users/maeviccica/Desktop/Barnard Files/Senior Year/Senior Fall 2020/Applied Statistical Methods/Projects/Project2GPS")
+
+# Aug 18 
+data1 <- read_json("./20200818114606.geojson")
+data1 <- data1[["features"]]
+
+# Aug 19
+data2 <- read_json("./20200819132607.geojson")
+data2 <- data2[["features"]]
+
+# Aug 20
+data3 <- read_json("./20200820151044.geojson")
+data3 <- data3[["features"]]
+
+# Aug 21
+data4 <- read_json("./20200821111447.geojson")
+data4 <- data4[["features"]]
+
+# Aug 24
+data5 <- read_json("./20200824130857.geojson")
+data5 <- data5[["features"]]
+
+# Aug 25
+data6 <- read_json("./20200825121346.geojson")
+data6 <- data6[["features"]]
+
+# Aug 26
+data7 <- read_json("./20200826131614.geojson")
+data7 <- data7[["features"]]
+
+# Aug 27
+data8 <- read_json("./20200827113234.geojson")
+data8 <- data8[["features"]]
+
+# Aug 28
+data9 <- read_json("./20200828122627.geojson")
+data9 <- data9[["features"]]
+
+# Aug 28 
+data10 <- read_json("./20200828130816.geojson")
+data10 <- data10[["features"]]
+
+# Aug 31 
+data11 <- read_json("./20200831115147.geojson")
+data11 <- data11[["features"]]
+
+```
+
+```{r}
+
+# Data Exploration 
+
+# 1 
+data1lat <- sapply(data1, function(feature) {
+  return(feature$geometry$coordinates[[2]])
+})
+data1long <- sapply(data1, function(feature) {
+  return(feature$geometry$coordinates[[1]])
+})
+
+# 2
+data2lat <- sapply(data2, function(feature) {
+  return(feature$geometry$coordinates[[2]])
+})
+data2long <- sapply(data2, function(feature) {
+  return(feature$geometry$coordinates[[1]])
+})
+
+# 3 
+data3lat <- sapply(data3, function(feature) {
+  return(feature$geometry$coordinates[[2]])
+})
+data3long <- sapply(data3, function(feature) {
+  return(feature$geometry$coordinates[[1]])
+})
+
+# 4 
+data4lat <- sapply(data4, function(feature) {
+  return(feature$geometry$coordinates[[2]])
+})
+data4long <- sapply(data4, function(feature) {
+  return(feature$geometry$coordinates[[1]])
+})
+
+# 5
+data5lat <- sapply(data5, function(feature) {
+  return(feature$geometry$coordinates[[2]])
+})
+data5long <- sapply(data5, function(feature) {
+  return(feature$geometry$coordinates[[1]])
+})
+
+# 6 
+data6lat <- sapply(data6, function(feature) {
+  return(feature$geometry$coordinates[[2]])
+})
+data6long <- sapply(data6, function(feature) {
+  return(feature$geometry$coordinates[[1]])
+})
+
+# 7 
+data7lat <- sapply(data7, function(feature) {
+  return(feature$geometry$coordinates[[2]])
+})
+data7long <- sapply(data7, function(feature) {
+  return(feature$geometry$coordinates[[1]])
+})
+
+# 8
+data8lat <- sapply(data8, function(feature) {
+  return(feature$geometry$coordinates[[2]])
+})
+data8long <- sapply(data8, function(feature) {
+  return(feature$geometry$coordinates[[1]])
+})
+
+# 9 
+data9lat <- sapply(data9, function(feature) {
+  return(feature$geometry$coordinates[[2]])
+})
+data9long <- sapply(data9, function(feature) {
+  return(feature$geometry$coordinates[[1]])
+})
+
+# 10 
+data10lat <- sapply(data10, function(feature) {
+  return(feature$geometry$coordinates[[2]])
+})
+data10long <- sapply(data10, function(feature) {
+  return(feature$geometry$coordinates[[1]])
+})
+
+# 11
+data11lat <- sapply(data11, function(feature) {
+  return(feature$geometry$coordinates[[2]])
+})
+data11long <- sapply(data11, function(feature) {
+  return(feature$geometry$coordinates[[1]])
+})
+
+```
+
+
+```{r}
+
+# Plot 1  
+library(ggplot2)
+ggplot() + 
+  geom_point(aes(data1long, data1lat), col="green", alpha=.4) +
+  geom_point(aes(data2long, data2lat), col="blue", alpha=.4) +
+  geom_point(aes(data3long, data3lat), col="red", alpha=.4) +
+  geom_point(aes(data4long, data4lat), col="orange", alpha=.4) +
+  geom_point(aes(data5long, data5lat), col="black", alpha=.4) +
+  geom_point(aes(data6long, data6lat), col="yellow", alpha=.4) +
+  geom_point(aes(data7long, data7lat), col="purple", alpha=.4) +
+  geom_point(aes(data8long, data8lat), col="gray", alpha=.4) +
+  geom_point(aes(data9long, data9lat), col="magenta", alpha=.4) +
+  geom_point(aes(data10long, data10lat), col="dark blue", alpha=.4) +
+  geom_point(aes(data11long, data11lat), col="dark green", alpha=.4) +
+  ggtitle("All Longitude and Latitude Data") + xlab("Longitude") + ylab("Latitude")
+
+
+# Plot 2: All minus Data 7   
+library(ggplot2)
+ggplot() + 
+  geom_point(aes(data1long, data1lat), col="green", alpha=.4) +
+  geom_point(aes(data2long, data2lat), col="blue", alpha=.4) +
+  geom_point(aes(data3long, data3lat), col="red", alpha=.4) +
+  geom_point(aes(data4long, data4lat), col="orange", alpha=.4) +
+  geom_point(aes(data5long, data5lat), col="black", alpha=.4) +
+  geom_point(aes(data6long, data6lat), col="yellow", alpha=.4) +
+  geom_point(aes(data8long, data8lat), col="gray", alpha=.4) +
+  geom_point(aes(data9long, data9lat), col="magenta", alpha=.4) +
+  geom_point(aes(data10long, data10lat), col="dark blue", alpha=.4) +
+  geom_point(aes(data11long, data11lat), col="dark green", alpha=.4) +
+  ggtitle("All Longitude and Latitude Data Except August 26") + xlab("Longitude") + ylab("Latitude")
+
+```
+
+```{r}
+
+# Dataframes 
+
+# Cut out first 5 min 
+library(parsedate)
+
+make_df <- function(data) {
+  matrix1 <- matrix(nrow=length(data), ncol=4)
+  for (i in 1:length(data)) {
+    longitude <- data[[i]][["geometry"]][["coordinates"]][[2]]
+    latitude <- data[[i]][["geometry"]][["coordinates"]][[1]]
+    speed <- data[[i]][["properties"]][["speed"]]
+    time <- data[[i]][["properties"]][["time"]]
+    
+    if (is.null(speed)) {
+      speed <- NA
+    }
+    
+    matrix1[i,] <- c(longitude, latitude, time, speed)
+    df <- data.frame(matrix1, stringsAsFactors=FALSE)
+    colnames(df) <- c("Longitude", "Latitude", "Time", "Speed") 
+  }
+  df$ParsedTime <- parse_iso_8601(df$Time)
+  df$TimeDifferences <- c(0, diff(df$ParsedTime, units="secs"))
+  df$Index <- seq(1,nrow(df))
+  df$SumTimeDifferences <- cumsum(df$TimeDifferences)
+  df <- df[df$SumTimeDifferences > 300,]
+  all_temp_df <- read.csv("./temp_data.csv")
+  station_number <- "USR0000MPOI"
+  temp_df <- all_temp_df[all_temp_df$STATION == station_number,]
+  temp_df$Date <- as.Date(temp_df$DATE)
+  df$Date <- as.Date(df$ParsedTime)
+  merged_df <- merge(df, temp_df, by="Date")
+  return(merged_df)
+} 
+
+# Dataframes 
+df1 <- make_df(data1)
+df2 <- make_df(data2)
+df3 <- make_df(data3)
+df4 <- make_df(data4)
+df5 <- make_df(data5)
+df6 <- make_df(data6)
+df7 <- make_df(data7)
+df8 <- make_df(data8)
+df9 <- make_df(data9)
+df10 <- make_df(data10)
+df11 <- make_df(data11)
+
+```
+
+
+```{r}
+
+
+# Cutoffs for stationary periods of over 120 seconds, mostly 
+
+# Df 1
+cutoff1 <- df1[df1$TimeDifferences > 120,]$Index[1] # 
+ggplot() + 
+  geom_point(aes(data1long[1:cutoff1], data1lat[1:cutoff1]), col="green", alpha=.4)
+
+# Df 2
+cutoff2 <- df2[df2$TimeDifferences > 120,]$Index[1] # 
+ggplot() + 
+  geom_point(aes(data2long[1:cutoff2], data2lat[1:cutoff2]), col="green", alpha=.4)
+
+# Df 3
+cutoff3 <- df5[df3$TimeDifferences > 120,]$Index[1] # 
+ggplot() + 
+  geom_point(aes(data3long[1:cutoff3], data3lat[1:cutoff3]), col="green", alpha=.4)
+# Df 4
+cutoff4 <- df4[df4$TimeDifferences > 120,]$Index[1] # 
+ggplot() + 
+  geom_point(aes(data4long[1:cutoff4], data4lat[1:cutoff4]), col="green", alpha=.4)
+
+# Df 5
+cutoff5 <- df5[df5$TimeDifferences > 120,]$Index[1] # 
+ggplot() + 
+  geom_point(aes(data5long[1:cutoff5], data5lat[1:cutoff5]), col="green", alpha=.4)
+head(df5,50)
+
+# Df 6
+cutoff6 <- df6[df6$TimeDifferences > 120,]$Index[1] # 
+ggplot() + 
+  geom_point(aes(data5long[1:cutoff6], data5lat[1:cutoff6]), col="green", alpha=.4)
+
+# df 7, car dealership second stop, eliminate from algorithm, keeping first stop
+cutoff7 <- df7[df7$TimeDifferences > 120,]$Index[1] # 
+ggplot() + 
+  geom_point(aes(data7long[1:cutoff7], data7lat[1:cutoff7]), col="green", alpha=.4)
+
+# Df 8
+cutoff8 <- df8[df8$TimeDifferences > 120,]$Index[1] # 
+ggplot() + 
+  geom_point(aes(data8long[1:cutoff8], data8lat[1:cutoff8]), col="green", alpha=.4)
+
+# Df 9, doesn't stop for 120 seconds, stops once > 60 
+cutoff9 <- df9[df9$TimeDifferences > 60,]$Index[1] # 
+ggplot() + 
+  geom_point(aes(data9long[1:cutoff9], data9lat[1:cutoff9]), col="green", alpha=.4)
+
+# Df 10
+cutoff10 <- df10[df10$TimeDifferences > 120,]$Index[1] # 
+ggplot() + 
+  geom_point(aes(data10long[1:cutoff10], data10lat[1:cutoff10]), col="green", alpha=.4)
+
+# Df 11
+cutoff11 <- df11[df11$TimeDifferences > 120,]$Index[1] # 
+ggplot() + 
+  geom_point(aes(data11long[1:cutoff11], data11lat[1:cutoff11]), col="green", alpha=.4)
+
+```
+
+```{r}
+
+### Cutoff Plot
+
+# Data Exploration: considered bomb location 
+ggplot() + 
+  geom_point(aes(data1long[1:cutoff1], data1lat[1:cutoff1]), col="green", alpha=.4) +
+  geom_point(aes(data2long[1:cutoff2], data2lat[1:cutoff2]), col="blue", alpha=.4) +
+  geom_point(aes(data3long[1:cutoff3], data3lat[1:cutoff3]), col="red", alpha=.4) +
+  geom_point(aes(data4long[1:cutoff4], data4lat[1:cutoff4]), col="orange", alpha=.4)+
+  geom_point(aes(data5long[1:cutoff5], data5lat[1:cutoff5]), col="purple", alpha=.4) +
+  geom_point(aes(data5long[1:cutoff6], data5lat[1:cutoff6]), col="gray", alpha=.4) +
+  geom_point(aes(data7long[1:cutoff7], data7lat[1:cutoff7]), col="light green", alpha=.4) +
+  geom_point(aes(data8long[1:cutoff8], data8lat[1:cutoff8]), col="light blue", alpha=.4) +
+  geom_point(aes(data9long[1:cutoff9], data9lat[1:cutoff9]), col="pink", alpha=.4) +
+  geom_point(aes(data10long[1:cutoff10], data10lat[1:cutoff10]), col="magenta", alpha=.4) +
+  geom_point(aes(data11long[1:cutoff11], data11lat[1:cutoff11]), col="yellow", alpha=.4) +
+  geom_point(aes(x=-113.98811867, y=46.86661642), size=4, color="black") +
+  ggtitle("Stationary Cutoff Longitude and Latitude Data") + xlab("Longitude") + ylab("Latitude") +
+  coord_cartesian(xlim = c(-114.0025, -113.9825), ylim = c(46.86, 46.89))
+
+```
+
+```{r }
+
+
+# Data Exploration: considered bomb location 
+ggplot() + 
+  geom_point(aes(data1long[1:cutoff1], data1lat[1:cutoff1]), col="green", alpha=.4) +
+  geom_point(aes(data2long[1:cutoff2], data2lat[1:cutoff2]), col="blue", alpha=.4) +
+  geom_point(aes(data3long[1:cutoff3], data3lat[1:cutoff3]), col="red", alpha=.4) +
+  geom_point(aes(data4long[1:cutoff4], data4lat[1:cutoff4]), col="orange", alpha=.4)+
+  geom_point(aes(data5long[1:cutoff5], data5lat[1:cutoff5]), col="purple", alpha=.4) +
+  geom_point(aes(data5long[1:cutoff6], data5lat[1:cutoff6]), col="gray", alpha=.4) +
+  geom_point(aes(data7long[1:cutoff7], data7lat[1:cutoff7]), col="light green", alpha=.4) +
+  geom_point(aes(data8long[1:cutoff8], data8lat[1:cutoff8]), col="light blue", alpha=.4) +
+  geom_point(aes(data9long[1:cutoff9], data9lat[1:cutoff9]), col="pink", alpha=.4) +
+  geom_point(aes(data10long[1:cutoff10], data10lat[1:cutoff10]), col="magenta", alpha=.4) +
+  geom_point(aes(data11long[1:cutoff11], data11lat[1:cutoff11]), col="yellow", alpha=.4) +
+  geom_point(aes(x=-113.98952, y=46.86508), color="black", size=3) +
+  geom_point(aes(x=-113.98805, y=46.86643), color="dark blue", size=3) +
+  ggtitle("Bomb Location Early Attempts") + xlab("Longitude") + ylab("Latitude") 
+
+### Bomb 1: 46.8650, -113.98926, black dot  
+
+```
+
+
+```{r}
+
+# Exploration of bomb distances from random points
+
+get_bomb_distances <- function(df) {
+  df$Latitude = as.numeric(df$Latitude)
+  df$Longitude = as.numeric(df$Longitude)
+  lat_long_mat <- df[, c("Latitude", "Longitude")]
+  bomb_coord_mat <- matrix(c(46.86508, -113.98952), nrow=1)
+  bomb_distances <- rdist.earth(lat_long_mat, bomb_coord_mat, miles=FALSE)[,1] * 1000
+  return(bomb_distances)
+}
+
+get_bomb_time <- function(df) {
+  bomb_time <- df$SumTimeDifferences[which.m(get_bomb_distances(df))]
+  return(bomb_time)
+}
+get_bomb_time(df1)
+
+``` 
+
+```{r}
+
+###  Data Exploration: considered bomb location
+
+# ggplot() + 
+#   geom_line(aes(data1long[1:cutoff1], data1lat[1:cutoff1]), col="green", alpha=.4) +
+#   geom_line(aes(data2long[1:cutoff2], data2lat[1:cutoff2]), col="blue", alpha=.4) +
+#   geom_line(aes(data3long[1:cutoff3], data3lat[1:cutoff3]), col="red", alpha=.4) +
+#   geom_line(aes(data4long[1:cutoff4], data4lat[1:cutoff4]), col="orange", alpha=.4)+
+#   geom_line(aes(data5long[1:cutoff5], data5lat[1:cutoff5]), col="purple", alpha=.4) +
+#   geom_line(aes(data5long[1:cutoff6], data5lat[1:cutoff6]), col="gray", alpha=.4) +
+#   geom_line(aes(data7long[1:cutoff7], data7lat[1:cutoff7]), col="light green", alpha=.4) +
+#   geom_line(aes(data8long[1:cutoff8], data8lat[1:cutoff8]), col="light blue", alpha=.4) +
+#   geom_line(aes(data9long[1:cutoff9], data9lat[1:cutoff9]), col="pink", alpha=.4) +
+#   geom_line(aes(data10long[1:cutoff10], data10lat[1:cutoff10]), col="magenta", alpha=.4) +
+#   geom_line(aes(data11long[1:cutoff11], data11lat[1:cutoff11]), col="yellow", alpha=.4) +
+#   geom_point(aes(x=-113.98805, y=46.86643), color="black", size=3) +
+#   ggtitle("Bomb 2 Zone Longitude and Latitude Data") + xlab("Longitude") + ylab("Latitude") +
+#   coord_cartesian(xlim = c(-113.9885, -113.9875), ylim = c(46.866, 46.867))
+
+
+### Data Exploration: considered bomb location 
+# ggplot() + 
+#   geom_point(aes(data1long[1:cutoff1], data1lat[1:cutoff1]), col="green", alpha=.4) +
+#   geom_point(aes(data2long[1:cutoff2], data2lat[1:cutoff2]), col="blue", alpha=.4) +
+#   geom_point(aes(data3long[1:cutoff3], data3lat[1:cutoff3]), col="red", alpha=.4) +
+#   geom_point(aes(data4long[1:cutoff4], data4lat[1:cutoff4]), col="orange", alpha=.4)+
+#   geom_point(aes(data5long[1:cutoff5], data5lat[1:cutoff5]), col="purple", alpha=.4) +
+#   geom_point(aes(data5long[1:cutoff6], data5lat[1:cutoff6]), col="gray", alpha=.4) +
+#   geom_point(aes(data7long[1:cutoff7], data7lat[1:cutoff7]), col="light green", alpha=.4) +
+#   geom_point(aes(data8long[1:cutoff8], data8lat[1:cutoff8]), col="light blue", alpha=.4) +
+#   geom_point(aes(data9long[1:cutoff9], data9lat[1:cutoff9]), col="pink", alpha=.4) +
+#   geom_point(aes(data10long[1:cutoff10], data10lat[1:cutoff10]), col="magenta", alpha=.4) +
+#   geom_point(aes(data11long[1:cutoff11], data11lat[1:cutoff11]), col="yellow", alpha=.4) +
+#   geom_point(aes(x=-113.98805, y=46.86643), color="dark blue", size=3) +
+#   ggtitle("Bomb 2 Zone Longitude and Latitude Data") + xlab("Longitude") + ylab("Latitude") 
+
+
+### Bomb location: 46.86643, -113.98805
+
+```
+
+
+```{r}
+
+
+library(fields)
+
+# Exploration of bomb distances from random points
+get_bomb_distances2 <- function(df) {
+  df$Latitude = as.numeric(df$Latitude)
+  df$Longitude = as.numeric(df$Longitude)
+  lat_long_mat <- df[, c("Latitude", "Longitude")]
+  bomb_coord_mat <- matrix(c(-113.98805, 46.86643), nrow=1)
+  bomb_distances <- rdist.earth(lat_long_mat, bomb_coord_mat, miles=FALSE)[,1] * 1000
+  return(bomb_distances)
+}
+
+get_bomb_time2 <- function(df) {
+  smaller_than_five = get_bomb_distances2(df) <= 25
+  bomb_time <- df$SumTimeDifferences[smaller_than_five][1]
+  return(bomb_time)
+}
+
+```
+
+```{r}
+
+# Temperature Stuff 
+# Q: Does the target walk faster or slower when the temperature is colder?
+
+# I  was unable to find temperature data for more than daily resolution. 
+
+# External Temperature Data from Montana 
+setwd("/Users/maeviccica/Desktop/Barnard Files/Senior Year/Senior Fall 2020/Applied Statistical Methods/Projects")
+all_temp_df <- read.csv("./temp_data.csv")
+station_number <- "USR0000MPOI" # used this station 
+temp_df <- all_temp_df[all_temp_df$STATION == station_number,]
+
+
+temp_df$Date <- as.Date(temp_df$DATE)
+df1$Date <- as.Date(df1$ParsedTime)
+merged_df <- merge(df1, temp_df, by="Date")
+
+### 
+library(ggplot2)
+full_df <- rbind(df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11)
+full_df$Speed = as.numeric(full_df$Speed)
+full_df$TAVG = as.numeric(full_df$TAVG)
+speed_and_temp_df <- full_df[,c("Date", "Speed", "TAVG")]
+
+
+# plot mean speeds vs temp 
+library(dplyr)
+mean_speed_and_temp_df <- speed_and_temp_df %>% group_by(Date) %>% 
+  summarise_at(vars(Speed, TAVG), funs(mean(., na.rm=TRUE)))
+
+ggplot(mean_speed_and_temp_df) + geom_point(aes(x=TAVG, y=Speed))
+# plot didn't tell us anything 
+
+
+summary(lm(Speed ~ TAVG, data=mean_speed_and_temp_df))
+  # From the regression, there is no significant linear relationship between walking speed and daily temperature
+# Need more data from other months and tighter resolution of the temperature data 
+# Assumptions not met for OLS, observations may not be independent, linearity may not be satisfied 
+# Only one day where he walked "slower", and he didn't walk faster/slower than other days 
+# no conclusions with data here 
+# missing speed values * 
+
+nrow(full_df[!is.na(full_df$Speed),])
+nrow(full_df)
+# ~2000 missing speed values 
+
+```
+
+```{r}
+
+# Please visualize the uncertainty in the target’s position over time and space.
+# You do not need to cover the duration of the entire trip but this graph should help support your decision on the best time/location for assassinating the target.
+# You should not plot individual data points on this graph.
+
+
+get_long_lat <- function(t, df) {
+  row <- df[df$SumTimeDifferences > t, ][1,]
+  long <- as.numeric(row$Longitude)
+  lat <- as.numeric(row$Latitude)
+  return(c(long, lat))
+}
+
+# every time between 300 and 5000 every 50 seconds 
+ts <- seq(300, 5000, 10)
+
+get_sd <- function (t) {
+  mat_v <- matrix(nrow=11, ncol=2)
+  mat_v[1,] <- get_long_lat(t, df1)
+  mat_v[2,] <- get_long_lat(t, df2)
+  mat_v[3,] <- get_long_lat(t, df3)
+  mat_v[4,] <- get_long_lat(t, df4)
+  mat_v[5,] <- get_long_lat(t, df5)
+  mat_v[6,] <- get_long_lat(t, df6)
+  mat_v[7,] <- get_long_lat(t, df7)
+  mat_v[8,] <- get_long_lat(t, df8)
+  mat_v[9,] <- get_long_lat(t, df9)
+  mat_v[10,] <- get_long_lat(t, df10)
+  mat_v[11,] <- get_long_lat(t, df11)
+  
+  sd_long <- sd(mat_v[,1])
+  sd_lat <- sd(mat_v[,2])
+  return(c(sd_long, sd_lat))
+}
+
+# 
+sd_mat <- t(sapply(ts, get_sd))
+sd_df <- data.frame(sd_mat)
+colnames(sd_df) <- c("LongSD", "LatSD")
+
+sd_df$Time = ts
+
+ggplot(sd_df) + geom_point(aes(x=Time, y=LongSD))
+ggplot(sd_df) + geom_point(aes(x=Time, y=LatSD))
+# Points around time=2000 have low SD so that's where the second bomb was placed in terms of time 
+# As time goes on his paths diverge less over the 11 days 
+
+
+# Combine sd plots  
+ggplot(sd_df) + geom_point(aes(x=Time, y=LongSD), color="blue") +
+  geom_point(aes(x=Time, y=LatSD), color="red") +
+  ggtitle("Standard Deviation of Coordinates Over Time") + xlab("Time") + ylab("Standard Deviation")  
+
+
+```
+
+```{r}
+
+# Data Quality Issues 
+  # GPS noise 
+  # Missing speed values 
+  # Temperature data didn't have tight resolution 
+
+```
+
+
+```{r}
+
+# BOMB PLAN / ALGORITHM 
+
+# Input: initial location and timestamp 
+# Output: day of the week, time of explosion, coordinates of location 
+
+library(tidyr)
+
+# 1 
+bomb <- function(location, timestamp) {
+  sd_df_no_na <- drop_na(sd_df)
+  min_row <- which.min(sd_df_no_na$LongSD)
+  min_row_time <- sd_df_no_na[min_row,]$Time
+  bomb_time <- timestamp + min_row_time 
+  location_mat <- matrix(nrow=11, ncol=2)
+  location_mat[1,] <- get_long_lat(min_row_time, df1)
+  location_mat[2,] <- get_long_lat(min_row_time, df2)
+  location_mat[3,] <- get_long_lat(min_row_time, df3)
+  location_mat[4,] <- get_long_lat(min_row_time, df4)
+  location_mat[5,] <- get_long_lat(min_row_time, df5)
+  location_mat[6,] <- get_long_lat(min_row_time, df6)
+  location_mat[7,] <- get_long_lat(min_row_time, df7)
+  location_mat[8,] <- get_long_lat(min_row_time, df8)
+  location_mat[9,] <- get_long_lat(min_row_time, df9)
+  location_mat[10,] <- get_long_lat(min_row_time, df10)
+  location_mat[11,] <- get_long_lat(min_row_time, df11)
+  long_med <- median(location_mat[,1]) 
+  lat_med <- median(location_mat[,2])
+  day_of_week <- wday(timestamp)
+  return(list(day_of_week, bomb_time, c(long_med, lat_med)))
+}
+
+
+# 2 
+bomb2 <- function(location, timestamp) {
+  sd_df_no_na <- drop_na(sd_df)
+  min_row <- which.min(sd_df_no_na$LongSD)
+  min_row_time <- sd_df_no_na[min_row,]$Time
+  bomb_time <- timestamp + min_row_time 
+  location_mat <- matrix(nrow=11, ncol=2)
+  location_mat[1,] <- get_long_lat(min_row_time, df1)
+  location_mat[2,] <- get_long_lat(min_row_time, df2)
+  location_mat[3,] <- get_long_lat(min_row_time, df3)
+  location_mat[4,] <- get_long_lat(min_row_time, df4)
+  location_mat[5,] <- get_long_lat(min_row_time, df5) 
+  location_mat[6,] <- get_long_lat(min_row_time, df6) # Cut out Data 7 
+  location_mat[8,] <- get_long_lat(min_row_time, df8)
+  location_mat[9,] <- get_long_lat(min_row_time, df9)
+  location_mat[10,] <- get_long_lat(min_row_time, df10)
+  location_mat[11,] <- get_long_lat(min_row_time, df11)
+  long_mean <- median(location_mat[,1]) 
+  lat_mean <- median(location_mat[,2])
+  day_of_week <- wday(timestamp)
+  return(list(day_of_week, bomb_time, c(long_mean, lat_mean)))
+}
+
+
+```
+
+```{r}
+
+# Test data for my bomb plan 
+
+
+library(jsonlite)
+setwd("/Users/maeviccica/Desktop/Barnard Files/Senior Year/Senior Fall 2020/Applied Statistical Methods/Projects/Project_2_test_gps")
+
+# September 1
+testdata1 <- read_json("./20200901112100.geojson")
+testdata1 <- testdata1[["features"]]
+
+# September 2
+testdata2 <- read_json("./20200902125611.geojson")
+testdata2 <- testdata2[["features"]]
+
+# September 3
+testdata3 <- read_json("./20200903110618.geojson")
+testdata3 <- testdata3[["features"]]
+
+# September 8
+testdata4 <- read_json("./20200908081420.geojson")
+testdata4 <- testdata4[["features"]]
+
+# September 10
+testdata5 <- read_json("./20200910070926.geojson")
+testdata5 <- testdata5[["features"]]
+
+# September 14 
+testdata6 <- read_json("./20200914101156.geojson")
+testdata6 <- testdata6[["features"]]
+
+
+```
+
+```{r}
+
+
+###  Model Validation 
+  # The model failed to bomb target in the 11 training datasets 
+
+# Getting timestamps 
+get_time1 <- function(data) {
+  return(data[[1]][["properties"]][["time"]])
+}
+# Getting location 
+get_location1 <- function(data) {
+  coord <- data[[1]][["geometry"]][["coordinates"]]
+  return(c(coord[[2]], coord[[1]]))
+}
+
+
+# See if the bomb was successful: distance from path to bomb at bomb_time on particular day 
+was_it_success <- function(initial_time, bomb_time, bomb_loc, df) {
+  diff_in_seconds <- difftime(bomb_time, initial_time, units="secs")
+  l <- get_long_lat(diff_in_seconds, df)
+  lmat <- matrix(c(l[1], l[2]), nrow=1)
+  bomb_loc_mat <- matrix(c(bomb_loc[1], bomb_loc[2]), nrow=1)
+  
+  dist <- rdist.earth(lmat, bomb_loc_mat, miles=FALSE)
+  return(dist[1,1] * 1000.0)
+}
+
+
+# Train
+# If train_dist_number was > 5, bomb failed 
+train_ts1 <- parse_date(get_time1(data1))
+train_l1 <- get_location1(data1)
+train_bomb1 <- bomb(train_l1, train_ts1)
+train_dist1 <- was_it_success(train_ts1, train_bomb1[[2]], train_bomb1[[3]], df1)
+
+train_ts2 <- parse_date(get_time1(data2))
+train_l2 <- get_location1(data2)
+train_bomb2 <- bomb(train_l2, train_ts2)
+train_dist2 <- was_it_success(train_ts2, train_bomb2[[2]], train_bomb2[[3]], df2)
+
+train_ts3 <- parse_date(get_time1(data3))
+train_l3 <- get_location1(data3)
+train_bomb3 <- bomb(train_l3, train_ts3)
+train_dist3 <- was_it_success(train_ts3, train_bomb3[[2]], train_bomb3[[3]], df3)
+
+train_ts4 <- parse_date(get_time1(data4))
+train_l4 <- get_location1(data4)
+train_bomb4 <- bomb(train_l4, train_ts4)
+train_dist4 <- was_it_success(train_ts4, train_bomb4[[2]], train_bomb4[[3]], df4)
+
+train_ts5 <- parse_date(get_time1(data5))
+train_l5 <- get_location1(data5)
+train_bomb5 <- bomb(train_l5, train_ts5)
+train_dist5 <- was_it_success(train_ts5, train_bomb5[[2]], train_bomb5[[3]], df5)
+
+train_ts6 <- parse_date(get_time1(data6))
+train_l6 <- get_location1(data6)
+train_bomb6 <- bomb(train_l6, train_ts6)
+train_dist6 <- was_it_success(train_ts6, train_bomb6[[2]], train_bomb6[[3]], df6)
+
+train_ts7 <- parse_date(get_time1(data7))
+train_l7 <- get_location1(data7)
+train_bomb7 <- bomb(train_l7, train_ts7)
+train_dist7 <- was_it_success(train_ts7, train_bomb7[[2]], train_bomb7[[3]], df7)
+
+train_ts8 <- parse_date(get_time1(data8))
+train_l8 <- get_location1(data8)
+train_bomb8 <- bomb(train_l8, train_ts8)
+train_dist8 <- was_it_success(train_ts8, train_bomb8[[2]], train_bomb8[[3]], df8)
+
+train_ts9 <- parse_date(get_time1(data9))
+train_l9 <- get_location1(data9)
+train_bomb9 <- bomb(train_l9, train_ts9)
+train_dist9 <- was_it_success(train_ts9, train_bomb9[[2]], train_bomb9[[3]], df9)
+
+train_ts10 <- parse_date(get_time1(data10))
+train_l10 <- get_location1(data10)
+train_bomb10 <- bomb(train_l10, train_ts10)
+train_dist10 <- was_it_success(train_ts10, train_bomb10[[2]], train_bomb10[[3]], df10)
+
+train_ts11 <- parse_date(get_time1(data11))
+train_l11 <- get_location1(data11)
+train_bomb11 <- bomb(train_l11, train_ts11)
+train_dist11 <- was_it_success(train_ts11, train_bomb11[[2]], train_bomb11[[3]], df11)
+
+```
+
+
+```{r}
+
+# Test data 
+ts1 <- parse_date(get_time1(testdata1))
+l1 <- get_location1(testdata1)
+bomb1 <- bomb(l1, ts1)
+
+ts2 <- parse_date(get_time1(testdata2))
+l2 <- get_location1(testdata2)
+bomb2 <- bomb(l2, ts2)
+
+ts3 <- parse_date(get_time1(testdata3))
+l3 <- get_location1(testdata3)
+bomb3 <- bomb(l3, ts3)
+
+ts4 <- parse_date(get_time1(testdata4))
+l4 <- get_location1(testdata4)
+bomb4 <- bomb(l4, ts4)
+
+ts5 <- parse_date(get_time1(testdata5))
+l5 <- get_location1(testdata5)
+bomb5 <- bomb(l5, ts5)
+
+ts6 <- parse_date(get_time1(testdata6))
+l6 <- get_location1(testdata6)
+bomb6 <- bomb(l6, ts6)
+
+
+```
+
+
